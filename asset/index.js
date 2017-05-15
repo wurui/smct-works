@@ -26,7 +26,7 @@ define(['zepto', 'mustache'], function (undef, Mustache) {
                     r.showtopbar = r.data.length > 4;
                     $mod.html(Mustache.render(tpl, r));
                 } else {
-                    $mod.html('<div class="empty"><i class="iconfont" style="font-size:50px;color:#ccc;">&#xe631;</i>&nbsp;&nbsp;<br/>作品栏是空的,赶紧去定制一个你喜欢的车贴吧~<br/><a href="'+$mod.attr('data-shopcart')+'">开始定制 &raquo;</a><br/><br/></div>')
+                    $mod.html('<div class="empty"><i class="iconfont" style="font-size:50px;color:#ccc;">&#xe631;</i>&nbsp;&nbsp;<br/>作品栏是空的,赶紧去定制一个你喜欢的车贴吧~<br/><a href="'+$mod.attr('data-build')+'">开始定制 &raquo;</a><br/><br/></div>')
                 }
 
 
@@ -40,6 +40,7 @@ define(['zepto', 'mustache'], function (undef, Mustache) {
                             $.getJSON('http://www.shaomachetie.com/smct/delbuild?ids='+ids.join(',')+'&callback=?',function(r){
                                 if(r.code==0) {
                                     $('.J_list>.selected', $mod).remove();
+                                    location.reload()
                                 }else{
                                     alert(r.error)
                                 }
@@ -54,7 +55,7 @@ define(['zepto', 'mustache'], function (undef, Mustache) {
 
                         location.href=$mod.attr('data-shopcart')+'?bids='+ids.join(',')
                     });
-                $($mod).on('click', '.snapshot', function (e) {
+                $($mod).on('tap', '.snapshot', function (e) {
                     $(this).toggleClass('selected');
                     var ck = $('input[type="checkbox"]', this)[0];
                     ck.checked = $(this).hasClass('selected');

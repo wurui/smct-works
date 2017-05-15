@@ -7,6 +7,9 @@
 .oxmod-smct-works {
   text-align: center;
 }
+.oxmod-smct-works:active {
+  background-color: transparent;
+}
 .oxmod-smct-works .bgcolor-1 {
   background-color: #0b97c4;
 }

@@ -12,7 +12,7 @@ define(['zepto', 'mustache'], function (undef, Mustache) {
     return {
         init: function ($mod) {
             var tpl = $('.J_tpl').html();
-            $.getJSON('http://www.shaomachetie.com/smct/getbuilds?callback=?', function (r) {
+            $.getJSON('//www.shaomachetie.com/smct/getbuilds?callback=?', function (r) {
                 var list = r.data;
                 var totalfee = 0;
 
@@ -37,7 +37,7 @@ define(['zepto', 'mustache'], function (undef, Mustache) {
                                 ids.push(this.getAttribute('data-id'))
                             })
 
-                            $.getJSON('http://www.shaomachetie.com/smct/delbuild?ids='+ids.join(',')+'&callback=?',function(r){
+                            $.getJSON('//www.shaomachetie.com/smct/delbuild?ids='+ids.join(',')+'&callback=?',function(r){
                                 if(r.code==0) {
                                     $('.J_list>.selected', $mod).remove();
                                     location.reload()

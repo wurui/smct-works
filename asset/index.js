@@ -24,6 +24,16 @@ define(['zepto', 'mustache'], function (undef, Mustache) {
                     //r.data=list.slice(0,4)
                     r.extcls = list % 2 ? '' : 'fix-flex';
                     r.showtopbar = r.data.length > 4;
+                    r.fullcarlogo=function(){
+
+                        var str=''
+                        if(/\d+/.test(this)){
+                            str='cars/'+this+'.png'
+                        }else{
+                            str='carlogo/'+this+'.jpg'
+                        }
+                        return 'http://www.shaomachetie.com/static/smct/img/'+str
+                    }
                     $mod.html(Mustache.render(tpl, r));
                 } else {
                     $mod.html('<div class="empty"><i class="iconfont" style="font-size:50px;color:#ccc;">&#xe631;</i>&nbsp;&nbsp;<br/>作品栏是空的,赶紧去定制一个你喜欢的车贴吧~<br/><a href="'+$mod.attr('data-build')+'">开始定制 &raquo;</a><br/><br/></div>')

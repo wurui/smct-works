@@ -32,7 +32,7 @@ define(['zepto', 'mustache'], function (undef, Mustache) {
                         }else{
                             str='carlogo/'+this+'.jpg'
                         }
-                        return 'http://www.shaomachetie.com/static/smct/img/'+str
+                        return 'http://v.oxm1.cc/'+str
                     }
                     $mod.html(Mustache.render(tpl, r));
                 } else {

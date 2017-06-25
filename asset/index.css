@@ -204,13 +204,14 @@
 .oxmod-smct-works .listbar > span {
   font-size: 14px;
   display: inline-block;
-  width: 50%;
   overflow: hidden;
 }
 .oxmod-smct-works .listbar > span:first-child {
+  width: 70%;
   text-align: left;
 }
 .oxmod-smct-works .listbar > span:last-child {
+  width: 30%;
   text-align: right;
 }
 .oxmod-smct-works .bt-del {

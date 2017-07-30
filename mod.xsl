@@ -25,7 +25,7 @@
             {{#data}}
             <div class="snapshot" data-id="{{_id}}" title="点击可选中">
                 <div class="snapshot-op">
-                    <p>时间:{{time}}</p>
+                    <p>{{time}}</p>
                     <span class="status status-{{status}}"></span>
                     <p class="radio">
                         <input type="checkbox" name="preview" value="{{_id}}"/>

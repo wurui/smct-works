@@ -166,6 +166,7 @@
   margin-top: 10px;
   border-radius: 10px;
   text-align: center;
+  padding-top: 7px;
 }
 .oxmod-smct-works .snapshot > .preview {
   transform: scale(0.25);

@@ -3,7 +3,7 @@
         <xsl:param name="actionShopcart"></xsl:param>
         <xsl:param name="actionBuild"></xsl:param>
         <!-- className 'J_OXMod' required  -->
-        <div class="J_OXMod oxmod-smct-works" ox-mod="smct-works" data-shopcart="{$actionShopcart}" data-build="{$actionBuild}">
+        <div class="J_OXMod oxmod-smct-works" ox-mod="smct-works" data-uid="{login/uid}" data-shopcart="{$actionShopcart}" data-build="{$actionBuild}">
             <div class="loading">加载中...</div>
 
         </div>

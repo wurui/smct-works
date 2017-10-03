@@ -23,7 +23,7 @@ define(['zepto', 'mustache','oxjs'], function (undef, Mustache,OXJS) {
             var uid=$mod.attr('data-uid');
 
 
-            var customizeRest = OXJS.useREST('customize/e0ee59439b39fcc3/u/' + encodeURIComponent(uid)).setDevHost('http://local.openxsl.com/');//md5('saomachetie')
+            var customizeRest = OXJS.useREST('customize').setDevHost('http://dev.openxsl.com/');//md5('saomachetie')
             customizeRest.get( function (r) {
             //$.getJSON('//www.shaomachetie.com/smct/getbuilds?callback=?', function (r) {
                 var list = r.data||r;

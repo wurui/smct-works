@@ -8,6 +8,7 @@ define(['zepto', 'mustache','oxjs'], function (undef, Mustache,OXJS) {
         };
         return [d.getFullYear(), prefix0(d.getMonth() + 1), prefix0(d.getDate())].join('-') + ' ' + [d.getHours(), prefix0(d.getMinutes()), prefix0(d.getSeconds())].join(':')
     };
+    /*
     var param2settings=function(param){
         if(!param)return {};
         var obj={};
@@ -15,14 +16,19 @@ define(['zepto', 'mustache','oxjs'], function (undef, Mustache,OXJS) {
             obj[n.label]= n.value;
         }//console.log(obj)
         return obj;
-    };
+    };*/
 
     return {
         init: function ($mod) {
             var tpl = $('.J_tpl').html();
             var uid=$mod.attr('data-uid');
-
-
+            /*
+            $('[data-ts]',$mod).each(function(){
+                //console.log(this)
+                this.innerHTML=timeformat(this.getAttribute('data-ts')-0);
+            })*/
+//$mod.html('<div class="empty"><i class="iconfont" style="font-size:50px;color:#ccc;">&#xe631;</i>&nbsp;&nbsp;<br/>作品栏是空的,赶紧去定制一个你喜欢的车贴吧~<br/><a href="' + $mod.attr('data-build') + '">开始定制 &raquo;</a><br/><br/></div>')
+/*
             var customizeRest = OXJS.useREST('customize').setDevHost('http://dev.openxsl.com/');//md5('saomachetie')
             customizeRest.get( function (r) {
             //$.getJSON('//www.shaomachetie.com/smct/getbuilds?callback=?', function (r) {
@@ -56,59 +62,81 @@ define(['zepto', 'mustache','oxjs'], function (undef, Mustache,OXJS) {
                 }
 
 
-                var btDel = $('.J_del', $mod).on('click', function () {
-                        OXJS.confirm('确认删除?',function(re){
-                            if (re) {
-                                var ids = [];
-                                $('.J_list>.selected', $mod).each(function () {
-                                    ids.push(this.getAttribute('data-id'))
-                                });
-                                //批量删除
-                                customizeRest.del({ids:ids.join(',')},function(r){
-
-                               // $.getJSON('//www.shaomachetie.com/smct/delbuild?ids=' + ids.join(',') + '&callback=?', function (r) {
-                                    if (r.code == 0) {
-                                        $('.J_list>.selected', $mod).remove();
-                                        location.reload()
-                                    } else {
-                                        alert(r.error)
-                                    }
-                                });
-                            }
-                        })
-
-                    }),
-                    btOrder = $('.J_order', $mod).on('click', function () {
+            });*/
+            var btDel = $('.J_del', $mod).on('click', function () {
+                OXJS.confirm('确认删除?',function(re){
+                    if (re) {
                         var ids = [];
                         $('.J_list>.selected', $mod).each(function () {
                             ids.push(this.getAttribute('data-id'))
-                        })
+                        });
+                        /*
+                        //批量删除
+                        customizeRest.del({ids:ids.join(',')},function(r){
 
-                        location.href = $mod.attr('data-shopcart') + '?bids=' + ids.join(',')
-                    });
-                var lastClickTS=0;
-                $mod.on('tap', '.snapshot', function (e) {
-                    if(Date.now()-lastClickTS < 100){
-                        return false
+                       // $.getJSON('//www.shaomachetie.com/smct/delbuild?ids=' + ids.join(',') + '&callback=?', function (r) {
+                            if (r.code == 0) {
+                                $('.J_list>.selected', $mod).remove();
+                                location.reload()
+                            } else {
+                                alert(r.error)
+                            }
+                        });*/
+                        if(ids.length){
+                            $mod.OXDelete({
+                                customize:{
+                                    _id:ids.toString()
+                                }
+
+                            },function(r){
+
+                           // $.getJSON('//www.shaomachetie.com/smct/delbuild?ids=' + ids.join(',') + '&callback=?', function (r) {
+                                if (r.code == 0) {
+                                    $('.J_list>.selected', $mod).remove();
+                                    location.reload()
+                                } else {
+                                    alert(r.error)
+                                }
+                            });
+
+
+                        }
+                                            
                     }
-                    lastClickTS=Date.now();
-                    $(this).toggleClass('selected');
-                    var ck = $('input[type="checkbox"]', this)[0];
-                    ck.checked = $(this).hasClass('selected');
-                    var len = $('.J_list>.selected', $mod).length
-                    $('.J_count', $mod).html(len)
+                })
 
-                    if (len) {
-                        btDel.removeAttr('disabled')
-                        btOrder.removeAttr('disabled')
-                    } else {
-                        btDel.attr('disabled', 'disabled')
-                        btOrder.attr('disabled', 'disabled')
-                    }
-                    return false
+            }),
+            btOrder = $('.J_order', $mod).on('click', function () {
+                var ids = [];
+                $('.J_list>.selected', $mod).each(function () {
+                    ids.push(this.getAttribute('data-id'))
+                })
 
-                });
+                location.href = $mod.attr('data-shopcart') + '?bids=' + ids.join(',')
             });
+            var lastClickTS=0;
+            $mod.on('tap', '.snapshot', function (e) {
+                if(Date.now()-lastClickTS < 100){
+                    return false
+                }
+                lastClickTS=Date.now();
+                $(this).toggleClass('selected');
+                var ck = $('input[type="checkbox"]', this)[0];
+                ck.checked = $(this).hasClass('selected');
+                var len = $('.J_list>.selected', $mod).length
+                $('.J_count', $mod).html(len)
+
+                if (len) {
+                    btDel.removeAttr('disabled')
+                    btOrder.removeAttr('disabled')
+                } else {
+                    btDel.attr('disabled', 'disabled')
+                    btOrder.attr('disabled', 'disabled')
+                }
+                return false
+
+            });
+
         }
     }
 })

@@ -1,4 +1,4 @@
-define(['zepto', 'mustache','oxjs'], function (undef, Mustache,OXJS) {
+define(['zepto','oxjs'], function (undef,OXJS) {
     var timeformat = function (d) {
         if (typeof d != 'object') {
             d = new Date(d);

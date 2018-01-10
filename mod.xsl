@@ -37,7 +37,7 @@
                             <p>
                                 <xsl:value-of select="time/y"/>/<xsl:value-of select="time/M"/>/<xsl:value-of select="time/d"/>
                                 &#160;
-                                <xsl:value-of select="time/h"/>:<xsl:value-of select="format-number(time/m,'00')"/>
+                                <xsl:value-of select="time/H"/>:<xsl:value-of select="format-number(time/m,'00')"/>
                             </p>
                             <span class="status status-{status}"></span>
                             <p class="radio">
